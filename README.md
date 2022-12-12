@@ -19,7 +19,8 @@ cd /data/dbus-awattar
 
 <img width="364" alt="image" src="https://user-images.githubusercontent.com/120425754/207173843-423782bc-03a5-43d6-b378-8a0e13106ad4.png">
 
-<img width="364" alt="image" src="https://user-images.githubusercontent.com/120425754/207174154-c8fa69d7-b4d5-4e2b-a850-2c51d7d88f1e.png">
+<img width="364" alt="image" src="https://user-images.githubusercontent.com/120425754/207174695-5e2d316e-d9fb-4ada-a6c2-f6e06f3e871a.png">
+
 
 # Status
 
