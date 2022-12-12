@@ -1,0 +1,3 @@
+#!/bin/bash
+echo "*** starting dbus-awattar ***"
+exec softlimit -d 100000000 -s 1000000 -a 100000000 /data/dbus-awattar/dbus-awattar.py
