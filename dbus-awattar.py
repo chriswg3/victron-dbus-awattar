@@ -142,7 +142,7 @@ class Awattar():
              if (self.scSoc.get_value()!=self.settings['soc']):
                   self.scSoc.set_value(self.settings['soc'])
            
-             wday = (self.slotdata[0].start_datetime.weekday() + 1) % 7
+             wday = (self.slotdata[s].start_datetime.weekday() + 1) % 7
              if (self.scDay.get_value()!=wday):
                   self.scDay.set_value(wday)
 
