@@ -27,3 +27,7 @@ cd /data/dbus-awattar
 Currently in testing. Use it at your own risk!
 
 
+# Credits
+
+Awattar Client (GPL-3.0)
+https://github.com/Gransi/awattar
