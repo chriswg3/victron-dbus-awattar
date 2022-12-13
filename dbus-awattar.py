@@ -111,7 +111,6 @@ class Awattar():
                                                                                                                                        
     def _checkChargingSlot(self):
         
-
          if (self.settings['state']==0 or len(self.slotdata)<=0):
              self.scDay.set_value(-7)
          else:
@@ -199,6 +198,7 @@ class Awattar():
     def handle_changed_setting(self, setting, oldvalue, newvalue):
         logging.debug('setting changed, setting: %s, old: %s, new: %s' % (setting, oldvalue, newvalue))
         self.doupdate = True
+        self.update()
         return True
 
     def getCountry(self):
@@ -218,7 +218,8 @@ class Awattar():
         if self.lastupdate is not None:
            diff = (datetime.datetime.now(self.tz) - self.lastupdate).total_seconds()
         
-        if not self.doupdate and diff <= 60*60:
+        if not self.doupdate and diff <= 30*60:
+            self._checkChargingSlot()
             return True
 
         logging.info('Refresh prices...')
@@ -241,13 +242,12 @@ class Awattar():
 
         endnextday = False
         if starthour>endhour:
-            endnextday = True
-        
-        
+           endnextday = True
+	
+         
         startdate = now
         if (now.hour<endhour):
-            startdate = startdate - datetime.timedelta(days=1)
-
+           startdate = startdate - datetime.timedelta(days=1)            
         startdate = startdate.replace(hour=starthour)
 
         
@@ -266,7 +266,7 @@ class Awattar():
            enddate = enddate + datetime.timedelta(days=1)
 
         data = client.request(startdate.astimezone(datetime.timezone.utc), enddate.astimezone(datetime.timezone.utc))
-        
+
         if client.best_slot(1,enddate.astimezone(datetime.timezone.utc)-datetime.timedelta(hours=1),enddate.astimezone(datetime.timezone.utc)) is not None:
            logging.debug("All data fetched.")
  
@@ -315,7 +315,8 @@ def main():
 
         mainloop = GLib.MainLoop()
         awattar = Awattar()
-        GLib.timeout_add(5000, awattar.update)
+        GLib.timeout_add(30000, awattar.update)
+        awattar.update()
         mainloop.run()
 
 if __name__ == "__main__":
