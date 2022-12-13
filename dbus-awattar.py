@@ -245,7 +245,7 @@ class Awattar():
         
         
         startdate = now
-        if (now.hour<starthour):
+        if (now.hour<endhour):
             startdate = startdate - datetime.timedelta(days=1)
 
         startdate = startdate.replace(hour=starthour)
